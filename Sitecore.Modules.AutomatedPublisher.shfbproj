@@ -1,0 +1,91 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <!-- The configuration and platform will be used to determine which
+         assemblies to include from solution and project documentation
+         sources -->
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5e3836ad-bd6e-4639-acc4-1d1a93a42ea6}</ProjectGuid>
+    <SHFBSchemaVersion>1.9.0.0</SHFBSchemaVersion>
+    <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
+         Studio adds them anyway -->
+    <AssemblyName>Documentation</AssemblyName>
+    <RootNamespace>Documentation</RootNamespace>
+    <Name>Documentation</Name>
+    <!-- SHFB properties -->
+    <OutputPath>.\doc\</OutputPath>
+    <HtmlHelpName>Sitecore.Modules.AutomatedPublisher</HtmlHelpName>
+    <ProjectSummary>
+    </ProjectSummary>
+    <MissingTags>Summary, Parameter, Returns, Value, AutoDocumentCtors, Namespace, TypeParameter</MissingTags>
+    <VisibleItems>Attributes, InheritedMembers, InheritedFrameworkMembers, Internals, Protected, SealedProtected</VisibleItems>
+    <HtmlHelp1xCompilerPath>
+    </HtmlHelp1xCompilerPath>
+    <HtmlHelp2xCompilerPath>
+    </HtmlHelp2xCompilerPath>
+    <SandcastlePath>
+    </SandcastlePath>
+    <WorkingPath>
+    </WorkingPath>
+    <BuildLogFile>doc\Sitecore.Modules.AutomatedPublisherLastBuild.log</BuildLogFile>
+    <HelpFileFormat>HtmlHelp1, MSHelp2, MSHelpViewer</HelpFileFormat>
+    <FrameworkVersion>3.5</FrameworkVersion>
+    <RootNamespaceContainer>True</RootNamespaceContainer>
+    <RootNamespaceTitle>Sitecore.Modules.AutomatedPublisher</RootNamespaceTitle>
+    <HelpTitle>Sitecore Automated Publisher module</HelpTitle>
+    <CopyrightHref>http://trac.sitecore.net/AutomatedPublisher</CopyrightHref>
+    <CopyrightText>Copyright &amp;#169%3b 2010-2011 Joel Konecny and David DeBruin Sitecore Shared Source Modules</CopyrightText>
+    <FeedbackEMailAddress>
+    </FeedbackEMailAddress>
+    <HeaderText>
+    </HeaderText>
+    <PresentationStyle>vs2005</PresentationStyle>
+    <SyntaxFilters>CSharp</SyntaxFilters>
+    <IncludeFavorites>True</IncludeFavorites>
+    <ComponentConfigurations>
+      <ComponentConfig id="Post-transform Component" enabled="True">
+        <component id="Post-transform Component" type="SandcastleBuilder.Components.PostTransformComponent" assembly="{@SHFBFolder}SandcastleBuilder.Components.dll">
+          <!-- Code colorizer files (required).
+                 Attributes:
+                    Stylesheet file (required)
+                    Script file (required)
+                    "Copy" image file (required) -->
+          <colorizer stylesheet="{@SHFBFolder}Colorizer\highlight.css" scriptFile="{@SHFBFolder}Colorizer\highlight.js" copyImage="{@SHFBFolder}Colorizer\CopyCode.gif" />
+          <!-- Base output paths for the files (required).  These should match
+                 the parent folder of the output path of the HTML files (see
+                 each of the SaveComponent instances below). -->
+          <outputPaths>
+{@HelpFormatOutputPaths}
+            </outputPaths>
+          <!-- Logo image file (optional).  Filename is required. The height,
+                 width, altText, placement, and alignment attributes are
+                 optional. -->
+          <logoFile filename="C:\Work\sitecore\scmbsce026\AutomatedPublisher\logo_sitecore.gif" height="0" width="0" altText="Sitecore" placement="right" alignment="left" />
+        </component>
+      </ComponentConfig>
+    </ComponentConfigurations>
+    <DocumentationSources>
+      <DocumentationSource sourceFile="bin\debug\Sitecore.Modules.AutomatedPublisher.dll" xmlns="" />
+      <DocumentationSource sourceFile="bin\debug\Sitecore.Modules.AutomatedPublisher.xml" xmlns="" />
+    </DocumentationSources>
+    <NamespaceSummaries>
+      <NamespaceSummaryItem name="(global)" isDocumented="False" />
+      <NamespaceSummaryItem name="Sitecore.Modules.AutomatedPublisher" isDocumented="True">Namespace for AutomatedPublisher</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Sitecore.Modules.AutomatedPublisher.Command" isDocumented="True">Namespace for the command of the AutomatedPublisher</NamespaceSummaryItem>
+    </NamespaceSummaries>
+    <PlugInNamespaces>ms.vsipcc+, ms.vsexpresscc+</PlugInNamespaces>
+    <VendorName>Sitecore</VendorName>
+    <MSHelp2SdkLinkType>Index</MSHelp2SdkLinkType>
+  </PropertyGroup>
+  <!-- There are no properties for these two groups but they need to appear in
+       order for Visual Studio to perform the build. -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <!-- Import the SHFB build targets -->
+  <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
+</Project>

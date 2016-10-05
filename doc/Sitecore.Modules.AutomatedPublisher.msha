@@ -1,0 +1,20 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sitecore Automated Publisher module</title>
+</head>
+<body class="vendor-book">
+    <div class="details">
+        <span class="vendor">Sitecore</span>
+        <span class="locale">en-us</span>
+        <span class="product">Sitecore Automated Publisher module</span>
+        <span class="name">Sitecore Automated Publisher module</span>
+    </div>
+    <div class="package-list">
+        <div class="package">
+            <!-- NOTE: The "name" span value cannot contain any periods! -->
+            <span class="name">Sitecore_Modules_AutomatedPublisher</span>
+            <a class="current-link" href="Sitecore.Modules.AutomatedPublisher.mshc">Sitecore.Modules.AutomatedPublisher.mshc</a>
+        </div>
+    </div>
+</body>
+</html>
