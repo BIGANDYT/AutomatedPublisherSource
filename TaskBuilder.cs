@@ -51,7 +51,7 @@ namespace Sitecore.Modules.AutomatedPublisher
 			string strScheduleItemName = string.Format(Constants.AutomatedPublisherItemNameFormat, strItemName);
 			if (bPublishAndNotUnpublish == false)
 			{
-				strScheduleItemName = string.Format(Constants.AutomatedUnPublisherItemNameFormat, strItemName);
+				strScheduleItemName = string.Format(Constants.AutomatedUNPublisherItemNameFormat, strItemName);
 			}
 			string strScheduleItemNameAndPath = string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0}/{1}", Constants.SchedulesFolder, strScheduleItemName);
 
@@ -129,7 +129,7 @@ namespace Sitecore.Modules.AutomatedPublisher
 				string strScheduleItemName = string.Format(Constants.AutomatedPublisherItemVersionNameFormat, strItemName, lang.Name, iVersionNumber);
 				if (bPublishAndNotUnpublish == false)
 				{
-					strScheduleItemName = string.Format(Constants.AutomatedUnPublisherItemVersionNameFormat, strItemName, lang.Name, iVersionNumber);
+					strScheduleItemName = string.Format(Constants.AutomatedUNPublisherItemVersionNameFormat, strItemName, lang.Name, iVersionNumber);
 				}
 				string strScheduleItemNameAndPath = string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0}/{1}", Constants.SchedulesFolder, strScheduleItemName);
 

@@ -26,9 +26,9 @@ namespace Sitecore.Modules.AutomatedPublisher
 		/// </summary>
 		public static readonly string AutomatedPublisherItemNameFormat = "ItemId_{0}_AutoPub";
 		/// <summary>
-		/// Constant for the format for AutomatedUnPublisher ItemId
+		/// Constant for the format for AutomatedUNPublisher ItemId
 		/// </summary>
-		public static readonly string AutomatedUnPublisherItemNameFormat = "ItemId_{0}_AutoUnPub";
+		public static readonly string AutomatedUNPublisherItemNameFormat = "ItemId_{0}_AutoUnPub";
 		/// <summary>
 		/// Constant for: /sitecore/system/Tasks/Commands/Auto Publish
 		/// </summary>
@@ -38,9 +38,9 @@ namespace Sitecore.Modules.AutomatedPublisher
 		/// </summary>
 		public static readonly string AutomatedPublisherItemVersionNameFormat = "ItemId_{0}_{1}_V_{2}_AutoPub";
 		/// <summary>
-		/// Constant for the format for AutomatedUnPublisher ItemVersionId
+		/// Constant for the format for AutomatedUNPublisher ItemVersionId
 		/// </summary>
-		public static readonly string AutomatedUnPublisherItemVersionNameFormat = "ItemId_{0}_{1}_V_{2}_AutoUnPub";
+		public static readonly string AutomatedUNPublisherItemVersionNameFormat = "ItemId_{0}_{1}_V_{2}_AutoUnPub";
 
 		/// <summary>
 		/// Constant for: [orphan]
@@ -80,6 +80,10 @@ namespace Sitecore.Modules.AutomatedPublisher
 		/// Constant for field name Last run 
 		/// </summary>
 		public static readonly string LastRun = "Last run";
-		#endregion
-	}
+        /// <summary>
+		/// Constant for field name Last run 
+		/// </summary>
+		public static readonly string ErrorFormattingString = "Error formatting string";
+        #endregion
+    }
 }

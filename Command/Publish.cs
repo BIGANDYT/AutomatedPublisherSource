@@ -34,13 +34,11 @@ namespace Sitecore.Modules.AutomatedPublisher.Command
 		public void Run(Item[] items, Tasks.CommandItem command, Tasks.ScheduleItem schedule)
 		{
 			DateTime dtPublishDate = DateTime.UtcNow;
-			bool bItemPublished = false;
 
 			using (new SecurityDisabler())
 			{
 				try
 				{
-					// Database master = Sitecore.Context.ContentDatabase;
 					Database master = Sitecore.Configuration.Factory.GetDatabase(Constants.MasterDatabaseName);
 					Sitecore.Globalization.Language[] languages = master.Languages;
 
@@ -100,17 +98,15 @@ namespace Sitecore.Modules.AutomatedPublisher.Command
 												}
 												catch
 												{
-												}
+                                                    Log.Error(Constants.ErrorFormattingString, this);
+                                                }
 
 												PublishOptions publishOptions = new PublishOptions(master, targetDb, PublishMode.Full, language, dtPublishDate);
 												publishOptions.Deep = true;
 												publishOptions.RootItem = itemToPublish;
-												// publishOptions.CompareRevisions = false;
-												// publishOptions.RepublishAll = true;
 
 												Publisher publisher = new Publisher(publishOptions);
 												publisher.Publish();
-												bItemPublished = true;
 											}
 											else
 											{
@@ -124,16 +120,7 @@ namespace Sitecore.Modules.AutomatedPublisher.Command
 							}
 						}
 					}
-					schedule.Remove();
-					if (bItemPublished == true)
-					{
-                        //-----------------------------------------------------------------------------
-                        // Gemäss Eintrag im Log, wird der Cache automatisch gelöscht nach dem Publish
-                        //-----------------------------------------------------------------------------
-                        // string strMessage = string.Format(System.Globalization.CultureInfo.CurrentCulture, "Automated Publisher Schedule Item CacheManager.ClearAllCaches(); Date / Time: {0}", DateTime.UtcNow.ToString("dd.MM.yyyy HH:mm:ss.fff"));
-                        // Log.Info(strMessage, this);
-                        // CacheManager.ClearAllCaches();
-                    }
+					schedule.Remove();					
                 }
 				catch (Exception ex)
 				{
