@@ -197,7 +197,7 @@ namespace Sitecore.Modules.AutomatedPublisher
 					string strDaysToRun = "127";
 
 					// sitecore uses 24 hour date format
-					string strInterval = string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0:HH:mm:ss}", dtSchedulerStartDate);
+					string strInterval = string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0:HH:mm:ss}", DateUtil.ToServerTime(dtSchedulerStartDate));
 
 					string strPublishSchedule = strStartDate + "|" + strEndDate + "|" + strDaysToRun + "|" + strInterval;
 
