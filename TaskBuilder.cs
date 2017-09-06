@@ -191,14 +191,13 @@ namespace Sitecore.Modules.AutomatedPublisher
 					}
 
 					DateTime dtSchedulerEndDate = dtSchedulerStartDate.AddDays(1);
+                    var interval = new TimeSpan(0, 0, 0);
+                    string strStartDate = DateUtil.ToIsoDate(dtSchedulerStartDate - interval); //sitecores code does startdatetime + interval
+                    string strEndDate = DateUtil.ToIsoDate(dtSchedulerEndDate);
+					string strDaysToRun = "127"; //bitwise flag for every day of the week
 
-					string strStartDate = string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0:yyyyMMdd}", dtSchedulerStartDate);
-					string strEndDate = string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0:yyyyMMdd}", dtSchedulerEndDate);
-					string strDaysToRun = "127";
-
-					// sitecore uses 24 hour date format
-					string strInterval = string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0:HH:mm:ss}", dtSchedulerStartDate);
-
+                    // sitecore uses 24 hour date format
+                    string strInterval = interval.ToString(@"hh\:mm\:ss");
 					string strPublishSchedule = strStartDate + "|" + strEndDate + "|" + strDaysToRun + "|" + strInterval;
 
 					Item autoPublishCommand = db.GetItem(Constants.AutoPublishCommandPath, lang);
@@ -222,7 +221,7 @@ namespace Sitecore.Modules.AutomatedPublisher
 						existingScheduleItem.Fields[Constants.Command].Value = autoPublishCommand.ID.ToString();
 						existingScheduleItem.Fields[Constants.Items].Value = sourceItemId.ToString();
 						existingScheduleItem.Fields[Constants.Schedule].Value = strPublishSchedule;
-						existingScheduleItem.Fields[Constants.LastRun].Value = Sitecore.DateUtil.ToIsoDate(new DateTime(dtSchedulerStartDate.Year, dtSchedulerStartDate.Month, dtSchedulerStartDate.Day, 0, 0, 0));
+						//existingScheduleItem.Fields[Constants.LastRun].Value = Sitecore.DateUtil.ToIsoDate(new DateTime(dtSchedulerStartDate.Year, dtSchedulerStartDate.Month, dtSchedulerStartDate.Day, 0, 0, 0));
 					}
 				}
 				catch (Exception ex)

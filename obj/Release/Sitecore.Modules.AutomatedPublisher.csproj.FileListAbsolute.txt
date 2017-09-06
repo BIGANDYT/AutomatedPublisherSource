@@ -1,0 +1,7 @@
+C:\Projects\AutomatedPublisherSource\bin\Release\Sitecore.Modules.AutomatedPublisher.dll
+C:\Projects\AutomatedPublisherSource\bin\Release\Sitecore.Modules.AutomatedPublisher.pdb
+C:\Projects\AutomatedPublisherSource\bin\Release\Sitecore.Kernel.dll
+C:\Projects\AutomatedPublisherSource\bin\Release\Newtonsoft.Json.dll
+C:\Projects\AutomatedPublisherSource\obj\Release\Sitecore.Modules.AutomatedPublisher.csprojResolveAssemblyReference.cache
+C:\Projects\AutomatedPublisherSource\obj\Release\Sitecore.Modules.AutomatedPublisher.dll
+C:\Projects\AutomatedPublisherSource\obj\Release\Sitecore.Modules.AutomatedPublisher.pdb
