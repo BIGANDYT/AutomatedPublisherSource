@@ -81,9 +81,17 @@ namespace Sitecore.Modules.AutomatedPublisher
 		/// </summary>
 		public static readonly string LastRun = "Last run";
         /// <summary>
-		/// Constant for field name Last run 
-		/// </summary>
-		public static readonly string ErrorFormattingString = "Error formatting string";
+        /// Constant for field name Auto Remove
+        /// </summary>
+        public static readonly string AutoRemove = "Auto remove";
+        /// <summary>
+        /// Constant for field name ASync
+        /// </summary>
+        public static readonly string ASync = "Async";
+        /// <summary>
+        /// Constant for field name Last run 
+        /// </summary>
+        public static readonly string ErrorFormattingString = "Error formatting string";
         #endregion
     }
 }

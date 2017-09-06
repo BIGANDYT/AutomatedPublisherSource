@@ -221,6 +221,7 @@ namespace Sitecore.Modules.AutomatedPublisher
 						existingScheduleItem.Fields[Constants.Command].Value = autoPublishCommand.ID.ToString();
 						existingScheduleItem.Fields[Constants.Items].Value = sourceItemId.ToString();
 						existingScheduleItem.Fields[Constants.Schedule].Value = strPublishSchedule;
+                        existingScheduleItem.Fields[Constants.AutoRemove].Value = "1"; //mark item to be auto removed after execution
 						//existingScheduleItem.Fields[Constants.LastRun].Value = Sitecore.DateUtil.ToIsoDate(new DateTime(dtSchedulerStartDate.Year, dtSchedulerStartDate.Month, dtSchedulerStartDate.Day, 0, 0, 0));
 					}
 				}
