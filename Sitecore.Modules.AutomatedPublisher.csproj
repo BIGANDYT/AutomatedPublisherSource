@@ -56,9 +56,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Sitecore.Kernel, Version=8.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Sitecore.Kernel.dll</HintPath>
+    <Reference Include="Sitecore.Kernel, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Sitecore.Kernel.NoReferences.8.2.170728\lib\NET452\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -100,25 +99,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="doc\Install_Sitecore.Modules.AutomatedPublisher.bat" />
-    <None Include="doc\Remove_Sitecore.Modules.AutomatedPublisher.bat" />
-    <None Include="doc\Sitecore.Modules.AutomatedPublisher.chm" />
-    <None Include="doc\Sitecore.Modules.AutomatedPublisher.HxC" />
-    <None Include="doc\Sitecore.Modules.AutomatedPublisher.HxT" />
-    <None Include="doc\Sitecore.Modules.AutomatedPublisher.msha" />
-    <None Include="doc\Sitecore.Modules.AutomatedPublisher.mshc" />
-    <None Include="doc\Sitecore.Modules.AutomatedPublisher_A.HxK" />
-    <None Include="doc\Sitecore.Modules.AutomatedPublisher_B.HxK" />
-    <None Include="doc\Sitecore.Modules.AutomatedPublisher_F.HxK" />
-    <None Include="doc\Sitecore.Modules.AutomatedPublisher_H2Reg.ini" />
-    <None Include="doc\Sitecore.Modules.AutomatedPublisher_K.HxK" />
-    <None Include="doc\Sitecore.Modules.AutomatedPublisher_NamedUrlIndex.HxK" />
-    <None Include="doc\Sitecore.Modules.AutomatedPublisher_S.HxK" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="doc\HelpLibraryManagerLauncher.exe" />
-    <Content Include="doc\Sitecore.Modules.AutomatedPublisher.HxS" />
-    <Content Include="logo_sitecore.gif" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
