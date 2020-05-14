@@ -42,77 +42,81 @@ namespace Sitecore.Modules.AutomatedPublisher.Command
 					Database master = Sitecore.Configuration.Factory.GetDatabase(Constants.MasterDatabaseName);
 					Sitecore.Globalization.Language[] languages = master.Languages;
 
-					// for each existing target
-					Item publishingTargetsFolder = master.GetItem(Constants.PublishingTargetsFolder);
-					Sitecore.Collections.ChildList publishingTargets = publishingTargetsFolder.Children;
-					foreach (Item publishingTarget in publishingTargets)
+					// make sure workflows states are considered
+					using (new SiteContextSwitcher(SiteContextFactory.GetSiteContext("shell")))
 					{
-						if (publishingTarget != null)
+						// for each existing target
+						Item publishingTargetsFolder = master.GetItem(Constants.PublishingTargetsFolder);
+						Sitecore.Collections.ChildList publishingTargets = publishingTargetsFolder.Children;
+						foreach (Item publishingTarget in publishingTargets)
 						{
-							string targetDBName = publishingTarget[Constants.TargetDatabase];
-							if (string.IsNullOrEmpty(targetDBName) == false)
+							if (publishingTarget != null)
 							{
-								Database targetDb = Sitecore.Configuration.Factory.GetDatabase(targetDBName);
-								if (targetDb != null)
+								string targetDBName = publishingTarget[Constants.TargetDatabase];
+								if (string.IsNullOrEmpty(targetDBName) == false)
 								{
-									// for each existing language
-									foreach (Sitecore.Globalization.Language language in languages)
+									Database targetDb = Sitecore.Configuration.Factory.GetDatabase(targetDBName);
+									if (targetDb != null)
 									{
-										foreach (Item actItem in items)
+										// for each existing language
+										foreach (Sitecore.Globalization.Language language in languages)
 										{
-											ID itemToPublishId = actItem.ID;
-											Item itemToPublish = master.GetItem(itemToPublishId, language);
-											bool bPublish = false;
-
-											Sitecore.Data.Fields.MultilistField targets = itemToPublish.Fields[Sitecore.FieldIDs.PublishingTargets];
-											if (targets != null)
+											foreach (Item actItem in items)
 											{
-												Item[] itemToPublishTargets = targets.GetItems();
-												if (itemToPublishTargets.Length > 0)
+												ID itemToPublishId = actItem.ID;
+												Item itemToPublish = master.GetItem(itemToPublishId, language);
+												bool bPublish = false;
+
+												Sitecore.Data.Fields.MultilistField targets = itemToPublish.Fields[Sitecore.FieldIDs.PublishingTargets];
+												if (targets != null)
 												{
-													foreach (Item itemToPublishTarget in itemToPublishTargets)
+													Item[] itemToPublishTargets = targets.GetItems();
+													if (itemToPublishTargets.Length > 0)
 													{
-														if (string.Equals(itemToPublishTarget.Name, publishingTarget.Name, StringComparison.CurrentCultureIgnoreCase) == true)
+														foreach (Item itemToPublishTarget in itemToPublishTargets)
 														{
-															bPublish = true;
-															break;
+															if (string.Equals(itemToPublishTarget.Name, publishingTarget.Name, StringComparison.CurrentCultureIgnoreCase) == true)
+															{
+																bPublish = true;
+																break;
+															}
 														}
+													}
+													else
+													{
+														bPublish = true;
 													}
 												}
 												else
 												{
 													bPublish = true;
 												}
-											}
-											else
-											{
-												bPublish = true;
-											}
 
-											if (bPublish == true)
-											{
-												try
+												if (bPublish == true)
 												{
-													string strMessage = string.Format(System.Globalization.CultureInfo.CurrentCulture, "Item '{0}' Target '{1}' Language '{2}': Automated Publisher Schedule Item '{3}'", itemToPublish.ID.ToString(), publishingTarget.Name, language.Name, schedule.Name);
-													Log.Info(strMessage, this);
+													try
+													{
+														string strMessage = string.Format(System.Globalization.CultureInfo.CurrentCulture, "Item '{0}' Target '{1}' Language '{2}': Automated Publisher Schedule Item '{3}'", itemToPublish.ID.ToString(), publishingTarget.Name, language.Name, schedule.Name);
+														Log.Info(strMessage, this);
+													}
+													catch
+													{
+	                                                    Log.Error(Constants.ErrorFormattingString, this);
+	                                                }
+
+													PublishOptions publishOptions = new PublishOptions(master, targetDb, PublishMode.Full, language, dtPublishDate);
+													publishOptions.Deep = true;
+													publishOptions.RootItem = itemToPublish;
+
+													Publisher publisher = new Publisher(publishOptions);
+													publisher.Publish();
 												}
-												catch
+												else
 												{
-                                                    Log.Error(Constants.ErrorFormattingString, this);
-                                                }
-
-												PublishOptions publishOptions = new PublishOptions(master, targetDb, PublishMode.Full, language, dtPublishDate);
-												publishOptions.Deep = true;
-												publishOptions.RootItem = itemToPublish;
-
-												Publisher publisher = new Publisher(publishOptions);
-												publisher.Publish();
-											}
-											else
-											{
-												string strMessage = string.Format(System.Globalization.CultureInfo.CurrentCulture, "Item '{0}' Target '{1}' Language '{2}': No publishing targets were selected in Automated Publisher",
-													itemToPublish.ID.ToString(), publishingTarget.Name, language.Name);
-												Log.Error(strMessage, this);
+													string strMessage = string.Format(System.Globalization.CultureInfo.CurrentCulture, "Item '{0}' Target '{1}' Language '{2}': No publishing targets were selected in Automated Publisher",
+														itemToPublish.ID.ToString(), publishingTarget.Name, language.Name);
+													Log.Error(strMessage, this);
+												}
 											}
 										}
 									}
